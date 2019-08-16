@@ -59,7 +59,7 @@ Network related parameter
 PCA-related parameters
 ----------------------
 
-* :code:`pca`: When set to true, use PCA.
+* :code:`pca`: When set to true, PCA is applied to the input descriptor vector.
 
   **Default:**
 
@@ -67,9 +67,9 @@ PCA-related parameters
 
      pca: false
 
-* :code:`pca_whiten`: When set to true, do whitening (equalize the variances of principal components).
-  It is different from conventional whitening with an additional parameter.
-  See :ref:`below <pca_min_whiten_level>`.
+* :code:`pca_whiten`: When set to true, PCA-transformed vector is whitened (the variances of principal components are normalized to unity).
+  The whitening is different than original scheme.
+  See :ref:`below <pca_min_whiten_level>` for more details on the difference.
 
   **Default:**
 
@@ -80,18 +80,19 @@ PCA-related parameters
 .. _pca_min_whiten_level:
 
 * :code:`pca_min_whiten_level`: This option can be used to suppress whitening of principal components
-  with really small variance. Whitening is the operation that equalize all variances of principal components
-  to unity.
+  with small variances. Originally, whitening normalize variances of all principal components to unity:
 
   .. math::
 
      PC_{i,\text{whiten}}=\frac{PC_i}{\sqrt{\text{Var}_i}}
 
-  In order to suppress principal components with really small variance equalized, a small constant :math:`a` can be added to the variance.
+  A small constant :math:`a` is added to the variance to suppress principal components with small variances:
 
   .. math::
 
      PC_{i,\text{whiten}}=\frac{PC_i}{\sqrt{\text{Var}_i + a}}
+
+  In practice, this can be used to reduce the generalization error.
 
   **Default:**
 

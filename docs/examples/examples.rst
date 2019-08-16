@@ -168,11 +168,11 @@ Please check in :doc:`/tutorials/tutorial` section for detailed LAMMPS script wr
 Principal component analysis
 ============================
 
-SIMPLE-NN provides principal component analysis (PCA) as a preprocessing method of input descriptor vector.
-Input descriptor vectors often have high correlation between components, including Behler-type symmetry functions.
-In that case, decorrelating input descriptor vector using PCA before feeding it to a machine-learning model can give faster convergence.
+SIMPLE-NN provides principal component analysis (PCA) as a method for preprocessing input descriptor vector.
+Input descriptor vector, including Behler-type symmetry functions, often has high correlation between components.
+In that case, decorrelating input descriptor vector using PCA before feeding it to a machine-learning model can give much faster convergence.
 
-In order to use PCA, add following lines in :code:`input.yaml` before you do preprocess.
+In order to use PCA, add following lines in :code:`input.yaml` when you do preprocess and when you do training and testing.
 For detailed descriptions of input parameters, see :ref:`here <models/hdnn/hdnn:PCA-related parameters>`.
 
 .. code:: yaml
