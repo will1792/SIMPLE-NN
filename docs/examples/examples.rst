@@ -161,12 +161,32 @@ The file is pickle format and you can open this file with python code of below::
 In the file, DFT energies/forces, NNP energies/forces are included.
 
 Molecular dynamics
-------------------
+==================
 Please check in :doc:`/tutorials/tutorial` section for detailed LAMMPS script writing.
 
 
+Principal component analysis
+============================
+
+SIMPLE-NN provides principal component analysis (PCA) as a preprocessing method of input descriptor vector.
+Input descriptor vectors often have high correlation between components, including Behler-type symmetry functions.
+In that case, decorrelating input descriptor vector using PCA before feeding it to a machine-learning model can give faster convergence.
+
+In order to use PCA, add following lines in :code:`input.yaml` before you do preprocess.
+For detailed descriptions of input parameters, see :ref:`here <models/hdnn/hdnn:PCA-related parameters>`.
+
+.. code:: yaml
+
+   neural_network:
+      pca: true
+      pca_whiten: true
+      pca_min_whiten_level: 1.0e-8
+
+A pickle file named :code:`pca` will be generated during the preprocessing. You need to copy :code:`pca` file to where you run SIMPLE-NN with trained model, just like :code:`scale_factor` file.
+
+
 Parameter tuning
-================ 
+================
 
 GDF
 ---

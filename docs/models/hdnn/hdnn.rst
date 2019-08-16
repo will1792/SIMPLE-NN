@@ -56,6 +56,50 @@ Network related parameter
   Standard deviation for weights initialization.
 
 
+PCA-related parameters
+----------------------
+
+* :code:`pca`: When set to true, use PCA.
+
+  **Default:**
+
+  .. code:: yaml
+
+     pca: false
+
+* :code:`pca_whiten`: When set to true, do whitening (equalize the variances of principal components).
+  It is different from conventional whitening with an additional parameter.
+  See :ref:`below <pca_min_whiten_level>`.
+
+  **Default:**
+
+  .. code:: yaml
+
+     pca_whiten: true
+
+.. _pca_min_whiten_level:
+
+* :code:`pca_min_whiten_level`: This option can be used to suppress whitening of principal components
+  with really small variance. Whitening is the operation that equalize all variances of principal components
+  to unity.
+
+  .. math::
+
+     PC_{i,\text{whiten}}=\frac{PC_i}{\sqrt{\text{Var}_i}}
+
+  In order to suppress principal components with really small variance equalized, a small constant :math:`a` can be added to the variance.
+
+  .. math::
+
+     PC_{i,\text{whiten}}=\frac{PC_i}{\sqrt{\text{Var}_i + a}}
+
+  **Default:**
+
+  .. code:: yaml
+
+     pca_min_whiten_level: 1.0e-8
+
+
 Optimization related parameter
 ------------------------------
 
