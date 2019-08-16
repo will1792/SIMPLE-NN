@@ -36,6 +36,7 @@ install_requires = [
     'braceexpand',
     'matplotlib<3.0',
     'scipy',
+    'scikit-learn',
 ]
 
 # Check the differece
